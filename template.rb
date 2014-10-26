@@ -24,6 +24,17 @@ end
   config env, 'action_controller.action_on_unpermitted_parameters', ':raise'
 end
 
+environment(%Q(
+  config.middleware.use(ExceptionNotification::Rack,
+    email: {
+      email_prefix: "Number Stories ",
+      sender_address: %{"Exception Notifier" <noreply@skynetjuniorscholars.org>},
+      exception_recipients: ['jarrettcolby@gmail.com'],
+    },
+    ignore_crawlers: ['Yandex', 'Googlebot']
+  )
+), env: 'production')
+
 copy_file 'Gemfile', force: true
 
 template 'config/database.yml', force: true
