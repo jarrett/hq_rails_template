@@ -11,11 +11,12 @@ It uses Rails' built-in application template system, which itself is largely bas
 ## Features
 
 * [Rails 4](https://github.com/rails/rails)
-* [Authlogic](https://github.com/binarylogic/authlogic) (configured for Bcrypt)
+* [Authlogic](https://github.com/binarylogic/authlogic) (logins, configured for Bcrypt)
 * [Authlogic Email Token] (https://github.com/jarrett/authlogic_email_token)
   (password resets, account activation)
-* [Echo Uploads](https://github.com/jarrett/echo_uploads)
+* [Echo Uploads](https://github.com/jarrett/echo_uploads) (user-uploaded files)
 * [Exception Notification](https://github.com/smartinez87/exception_notification)
+  (sends emails when an exception is raised in production)
 
 ## Test Framework
 
