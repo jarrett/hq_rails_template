@@ -1,0 +1,38 @@
+<h1>Join</h1>
+
+<%= form_for @user, url: join_url do |f| %>
+  <% if User.has_login_field? %>
+    <div>
+      <%= f.label :login, 'Username:' %>
+      <%= f.text_field :login %>
+      <%= error_on f.object, :login %>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= f.label :email, 'Email:' %>
+    <%= f.text_field :email %>
+    <%= error_on f.object, :email %>
+  </div>
+  
+  <div>
+    <%= f.label :password, 'Password:' %>
+    <%= f.password_field :password %>
+    <%= error_on f.object, :password %>
+    <%= render partial: 'users/password_strength_instructions' %>
+  </div>
+  
+  <div>
+    <%= f.label :password_confirmation, 'Confirm password:' %>
+    <%= f.password_field :password_confirmation %>
+    <%= error_on f.object, :password_confirmation %>
+  </div>
+  
+  <div>
+    <%= f.label :time_zone, 'Time zone:' %>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, default: 'Eastern Time (US & Canada)' %>
+    <%= error_on f.object, :time_zone %>
+  </div>
+  
+  <div><%= f.submit 'Join' %></div>
+<% end %>

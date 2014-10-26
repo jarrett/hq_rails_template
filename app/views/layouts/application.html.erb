@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Title</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="<%= body_class %>">
+  <% if flash[:notice] %>
+    <div id="notice">
+      <div class="container"><%= flash[:notice] %></div>
+    </div>
+  <% end %>
+  
+  <div id="header">
+    <div class="container">
+      <h2><%= link_to 'Home', root_url %></h2>
+      
+      <div id="user-meta">
+        <% if current_user %>
+          <%= link_to 'Log out', logout_url %>
+          <%= link_to 'Account', account_url %>
+        <% else %>
+          <%= link_to 'Log in', login_url %>
+          <%= link_to 'Join', join_url %>
+        <% end %>
+      </div>
+      
+      <ul id="top-nav">
+      </ul>
+    </div>
+  </div>
+
+  
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
+</html>

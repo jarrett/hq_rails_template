@@ -1,0 +1,39 @@
+<%= form_for @user_session, url: login_path do |f| %>
+  <% if @user_session.bad_credentials? %>
+    <div class="error-message">
+      <% if User.has_login_field? %>
+        Incorrect login or password.
+      <% else %>
+        Incorrect email or password.
+      <% end %>
+    </div>
+  <% elsif @user_session.errors.include?(:activation) %>
+    <div class="error-message">
+      Your account has not been activated.
+    </div>
+  <% end %>
+  
+  <div>
+    <% if User.has_login_field? %>
+      <%= f.label :login, 'Login:' %>
+      <%= f.text_field :login %>
+    <% else %>
+      <%= f.label :email, 'Email:' %>
+      <%= f.text_field :email %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :password, 'Password:' %>
+    <%= f.password_field :password %>
+  </div>
+  
+  <div class="checkbox">
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me, 'Remember me' %>
+  </div>
+  
+  <div>
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
