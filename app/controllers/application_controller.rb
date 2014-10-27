@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   
   before_filter :require_user
   
+  # These match the alert class names in Bootstrap. (You can still use them even if you
+  # don't use Bootstrap, though.)
+  add_flash_types :success, :info, :warning, :danger
+  
   def current_user_session
 		return @current_user_session if defined?(@current_user_session)
 		@current_user_session = UserSession.find

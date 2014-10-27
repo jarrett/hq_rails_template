@@ -17,33 +17,15 @@
   <![endif]-->
 </head>
 <body class="<%= body_class %>">
-  <% if flash[:notice] %>
-    <div id="notice">
-      <div class="container"><%= flash[:notice] %></div>
-    </div>
-  <% end %>
-  
-  <div id="header">
-    <div class="container">
-      <h2><%= link_to 'Home', root_url %></h2>
-      
-      <div id="user-meta">
-        <% if current_user %>
-          <%= link_to 'Log out', logout_url %>
-          <%= link_to 'Account', account_url %>
-        <% else %>
-          <%= link_to 'Log in', login_url %>
-          <%= link_to 'Join', join_url %>
-        <% end %>
-      </div>
-      
-      <ul id="top-nav">
-      </ul>
-    </div>
-  </div>
-
+  <%= render partial: 'layouts/navbar' %>
   
   <div class="container">
+    <% [:danger, :warning, :info, :success].each do |type| %>
+      <% if flash[type].present? %>
+        <%= alert(flash[type], type: type, dismissible: true) %>
+      <% end %>
+    <% end %>
+    
     <%= yield %>
   </div>
 </body>

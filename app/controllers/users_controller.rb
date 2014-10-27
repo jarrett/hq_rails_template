@@ -8,9 +8,9 @@ class UsersController < ApplicationController
       user.confirm_email!
       UserSession.create(user)
       if was_unactivated
-        redirect_to root_url, notice: 'Your account has been activated.'
+        redirect_to root_url, success: 'Your account has been activated.'
       else
-        redirect_to root_url, notice: 'Your email address has been confirmed.'
+        redirect_to root_url, success: 'Your email address has been confirmed.'
       end
     else
       render action: :bad_confirmation_email
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new new_user_params
     if @user.save
 			@user.maybe_deliver_email_confirmation! self
-			redirect_to root_url, notice: "Thanks for joining. Please check your email for instructions on activating your account."
+			redirect_to root_url, success: "Thanks for joining. Please check your email for instructions on activating your account."
 		else
 			render action: :new
 		end
@@ -47,9 +47,9 @@ class UsersController < ApplicationController
       end
       if params[:user][:password].present?
         notice << ' Your password has been changed. Please log back in with your new password.'
-        redirect_to login_url, notice: notice
+        redirect_to login_url, success: notice
       else
-        redirect_to account_url, notice: notice
+        redirect_to account_url, success: notice
       end
     else
       render action: :edit

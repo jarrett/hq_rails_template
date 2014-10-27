@@ -21,8 +21,7 @@ class UserSessionsController < ApplicationController
 
 	def destroy
 		current_user_session.destroy
-		flash[:notice] = "You've been logged out."
-		redirect_to login_url, notice: "You've been logged out."
+		redirect_to login_url, info: "You've been logged out."
 	end
 	
 	private

@@ -18,6 +18,7 @@ gem 'ejs'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'sass-rails'
+gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'uglifier'
 

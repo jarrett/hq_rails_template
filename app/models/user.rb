@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.maintain_sessions = false
     c.crypto_provider = Authlogic::CryptoProviders::BCrypt
+    c.merge_validates_length_of_password_field_options minimum: 0
+    c.merge_validates_length_of_password_confirmation_field_options minimum: 0
   end
   include Authlogic::ActsAsAuthentic::EmailToken::Confirmation
   
@@ -9,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :uploads
   
   validates(:password, if: :require_password?,
-            password_strength: {min_entropy: 15, use_dictionary: true, message: "isn't strong enough"})
+            password_strength: {min_entropy: 15, use_dictionary: true, message: "isn't strong enough."})
   
   def activate
     self.activated = true

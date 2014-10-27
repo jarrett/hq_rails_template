@@ -35,6 +35,8 @@ environment(%Q(
   )
 ), env: 'production')
 
+application 'config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }'
+
 copy_file 'Gemfile', force: true
 
 template 'config/database.yml', force: true
@@ -54,8 +56,10 @@ copy_file 'app/controllers/users_controller.rb', force: true
 copy_file 'app/controllers/user_sessions_controller.rb', force: true
 
 copy_file 'app/helpers/application_helper.rb', force: true
+copy_file 'app/helpers/bootstrap_helper.rb', force: true
 
 copy_file 'app/views/layouts/application.html.erb', force: true
+copy_file 'app/views/layouts/_navbar.html.erb', force: true
 copy_file 'app/views/users/new.html.erb', force: true
 copy_file 'app/views/users/edit.html.erb', force: true
 copy_file 'app/views/users/_password_strength_instructions.html.erb', force: true
@@ -64,9 +68,9 @@ copy_file 'app/views/user_mailer/email_confirmation.html.erb', force: true
 copy_file 'app/views/user_mailer/email_confirmation.text.erb', force: true
 copy_file 'app/views/static/home.html.erb', force: true
 
-copy_file 'app/assets/stylesheets/application.css', force: true
+copy_file 'app/assets/stylesheets/application.css.scss', force: true
+copy_file 'app/assets/stylesheets/bootstrap-custom.scss', force: true
 copy_file 'app/assets/javascripts/application.js', force: true
-copy_file 'app/assets/javascripts/notice.js', force: true
 
 copy_file 'test/test_helper.rb', force: true
 copy_file 'test/blueprints.rb', force: true

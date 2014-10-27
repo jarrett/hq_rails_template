@@ -1,39 +1,35 @@
 <%= form_for @user_session, url: login_path do |f| %>
   <% if @user_session.bad_credentials? %>
-    <div class="error-message">
       <% if User.has_login_field? %>
-        Incorrect login or password.
+        <%= alert 'Incorrect login or password.', type: :danger %>
       <% else %>
-        Incorrect email or password.
+        <%= alert 'Incorrect email or password.', type: :danger %>
       <% end %>
-    </div>
   <% elsif @user_session.errors.include?(:activation) %>
-    <div class="error-message">
-      Your account has not been activated.
-    </div>
+    <%= alert 'Your account has not been activated.', type: :danger %>
   <% end %>
   
-  <div>
+  <%= f.group :login do %>
     <% if User.has_login_field? %>
       <%= f.label :login, 'Login:' %>
-      <%= f.text_field :login %>
+      <%= f.text_field :login, class: 'form-control' %>
     <% else %>
       <%= f.label :email, 'Email:' %>
-      <%= f.text_field :email %>
+      <%= f.text_field :email, class: 'form-control' %>
     <% end %>
-  </div>
+  <% end %>
 
-  <div>
+  <%= f.group :login do %>
     <%= f.label :password, 'Password:' %>
-    <%= f.password_field :password %>
-  </div>
+    <%= f.password_field :password, class: 'form-control' %>
+  <% end %>
   
   <div class="checkbox">
-    <%= f.check_box :remember_me %>
-    <%= f.label :remember_me, 'Remember me' %>
+    <%= f.label :remember_me do %>
+      <%= f.check_box :remember_me %>
+      Remember me
+    <% end %>
   </div>
   
-  <div>
-    <%= f.submit "Log in" %>
-  </div>
+  <button type="submit" class="btn btn-default">Log in</button>
 <% end %>
